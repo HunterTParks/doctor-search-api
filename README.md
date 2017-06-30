@@ -24,7 +24,6 @@ A special thanks to BetterDoctor for letting me use their API. [Here is the comp
 $ npm install gulp --save-dev
 $ bower install jquery --save
 $ bower install bootstrap --save
-$ bower install moment --save
 $ npm install bower-files --save-dev
 $ npm install browser-sync --save-dev
 $ npm install browserify --save-dev
@@ -35,6 +34,7 @@ $ npm install gulp-util --save-dev
 $ npm install del --save-dev
 $ npm install jshint --save-dev
 $ npm install gulp-jshint --save-dev
+$ npm install gulp-sass --save-dev
 ```
 
 * Once you have all of the libraries downloaded, run the following commands
@@ -44,7 +44,25 @@ $ gulp build
 $ gulp serve
 ```
 
-* Once the 'gulp serve' command has been completed, a webpage will open up automatically.
+Once the 'gulp serve' command has been completed, a webpage will open up automatically.
+
+### Known Bugs
+There Are no Known bugs at this time
+
+### Support
+If you would like to report a problem, please contact my email at hunter.thomas.parks@gmail.com
+
+### Dependencies Used
+* HTML
+* CSS
+* JQUERY
+* BOOTSTRAP
+* NODE.JS
+
+### COPYRIGHT
+This App is licensed by the (MIT) license
+
+COPYRIGHT 2017 @ *_Hunter Parks_*
 
 
 
