@@ -1,8 +1,9 @@
 var apiKey = require('./../.env').apiKey;
-var DisplayInfo = require('../doctor-interface.js').DisplayInfo;
+var DisplayInfo = require('./../js/doctor-interface.js').DisplayInfo;
 
-Doctor = function(){
-
+var Doctor = function(injury, location){
+	this.injury = injury;
+	this.location = location;
 };
 
 Doctor.prototype.GetDoctors = function(injury, userlocation){
@@ -14,3 +15,5 @@ Doctor.prototype.GetDoctors = function(injury, userlocation){
 		console.log("ERROR");
 	});
 };
+
+exports.doctorModule = Doctor;
