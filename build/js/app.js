@@ -2,28 +2,30 @@
 exports.apiKey = "c16d59c9e230368d61a799cf48f51c00";
 
 },{}],2:[function(require,module,exports){
+// var Doctor = require('./../js/Doctor.js').DoctorModule;
+// var DisplayInfo = require('/js/scripts.js').DisplayModule;
 var apiKey = require('./../.env').apiKey;
-var DisplayInfo = require('./../js/doctor-interface.js').DisplayInfo;
 
 var Doctor = function(injury, location){
 	this.injury = injury;
 	this.location = location;
 };
 
-Doctor.prototype.GetDoctors = function(injury, userlocation){
-	$.get('https://api.betterdoctor.com/2016-03-01/doctors?query=' + injury + '&location=37.779&2C-122.413%2C100&user_location=' + userlocation + '&skip=0&limit=10&user_key=' + apiKey).then(function(response){
-		for(var i = 0; i <= response.data.practices.length; i++){
-			DisplayInfo(response);
+var DisplayInfo = function(response, i){
+	$('.displayInfo').append(response.data.practices[i].name);
+};
+
+Doctor.prototype.GetDoctors = function(){
+	$.get('https://api.betterdoctor.com/2016-03-01/doctors?query=' + this.injury + '&location=' + this.location + '&user_location=37.773%2C-112.413&sort=full-name-desc&skip=0&limit=10&user_key=c' + apiKey).then(function(response){
+		for(var i = 1; i <= 10; i++){
+			console.log(response);
+			DisplayInfo(response, i);
 		}
 	}).fail(function(response){
 		console.log("ERROR");
 	});
 };
 
-exports.doctorModule = Doctor;
-
-},{"./../.env":1,"./../js/doctor-interface.js":3}],3:[function(require,module,exports){
-var Doctor = require('./../js/Doctor.js').DoctorModule;
 
 $(document).ready(function(){
 	$("#doctorSearch").submit(function(){
@@ -33,9 +35,6 @@ $(document).ready(function(){
 		var newDoctor = new Doctor(injury, location);
 		newDoctor.GetDoctors();
 	});
-
 });
 
-},{"./../js/Doctor.js":2}],4:[function(require,module,exports){
-arguments[4][3][0].apply(exports,arguments)
-},{"./../js/Doctor.js":2,"dup":3}]},{},[4]);
+},{"./../.env":1}]},{},[2]);
