@@ -7,6 +7,6 @@ $(document).ready(function(){
 		var injury = $("#injury").val();
 		var location = $("#location").val();
 		newDoctor.GetDoctors(injury, location);
-	}
+	});
 
 });
