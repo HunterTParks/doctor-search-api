@@ -3,7 +3,27 @@ exports.apiKey = "c16d59c9e230368d61a799cf48f51c00";
 
 },{}],2:[function(require,module,exports){
 var DisplayInfo = function(response, i){
-	$('.displayInfo').append('<p>' + response.data[i].profile.first_name + ' ' + response.data[i].profile.last_name + '</p>');
+	var array = ["Hunter Parks"];
+	var yesOrNo = false;
+	if(response.data[i] === undefined)
+	{
+		console.log("Hello universe!");
+	}
+	else {
+		for(var j = 0; j <= array.length; j++)
+		{
+			if(response.data[i] === array[j])
+			{
+				yesOrNo === true;
+			}
+		}
+		if(yesOrNo === false)
+		{
+			var name = response.data[i].profile.first_name + ' ' + response.data[i].profile.last_name;
+			$('.displayInfo').append('<div class = "well"><div class="col-sm-3"><p>' + response.data[i].profile.first_name + ' ' + response.data[i].profile.last_name + '</p></div><div class="col-sm-3"><p></p></div><div class="col-sm-3"><p>' + response.data[i].profile.gender + '</p></div><div class="col-sm-3"><p></p></div></div>');
+			array.push(name);
+		}
+	}
 };
 
 $(document).ready(function(){
@@ -14,7 +34,7 @@ $(document).ready(function(){
 		var injury = $("#injury").val();
 		var location = $("#location").val();
 		var newDoctor = new Doctor(injury, location);
-		// var Doctor = require('./../js/doctor.js').doctorModule;
+		$(".displayInfo").empty();
 		newDoctor.GetDoctors();
 	});
 });
@@ -42,22 +62,6 @@ class Doctor{
   	});
   }
 }
-//
-// Doctor = function(injury, location){
-// 	this.injury = injury;
-// 	this.location = location;
-// };
-//
-// Doctor.prototype.GetDoctors = function(){
-// 	$.get('https://api.betterdoctor.com/2016-03-01/doctors?query=' + this.injury + '&location=' + this.location + '&user_location=45.5231%2C%20122.6765&sort=full-name-desc&skip=0&limit=10&user_key=' + apiKey).then(function(response){
-// 		console.log(response.data.length);
-// 		for(var i = 0; i <= response.data.length; i++){
-// 			DisplayInfo(response, i);
-// 		}
-// 	}).fail(function(response){
-// 		console.log("ERROR");
-// 	});
-// };
 
 exports.doctorModule = Doctor;
 

@@ -1,5 +1,25 @@
 var DisplayInfo = function(response, i){
-	$('.displayInfo').append('<p>' + response.data[i].profile.first_name + ' ' + response.data[i].profile.last_name + '</p>');
+	var array = ["Hunter Parks"];
+	var yesOrNo = false;
+	if(response.data[i] === undefined)
+	{
+		console.log("Hello universe!");
+	}
+	else {
+		for(var j = 0; j <= array.length; j++)
+		{
+			if(response.data[i] === array[j])
+			{
+				yesOrNo === true;
+			}
+		}
+		if(yesOrNo === false)
+		{
+			var name = response.data[i].profile.first_name + ' ' + response.data[i].profile.last_name;
+			$('.displayInfo').append('<div class = "well"><div class="col-sm-3"><p>' + response.data[i].profile.first_name + ' ' + response.data[i].profile.last_name + '</p></div><div class="col-sm-3"><p></p></div><div class="col-sm-3"><p>' + response.data[i].profile.gender + '</p></div><div class="col-sm-3"><p></p></div></div>');
+			array.push(name);
+		}
+	}
 };
 
 $(document).ready(function(){
@@ -10,7 +30,7 @@ $(document).ready(function(){
 		var injury = $("#injury").val();
 		var location = $("#location").val();
 		var newDoctor = new Doctor(injury, location);
-		// var Doctor = require('./../js/doctor.js').doctorModule;
+		$(".displayInfo").empty();
 		newDoctor.GetDoctors();
 	});
 });
